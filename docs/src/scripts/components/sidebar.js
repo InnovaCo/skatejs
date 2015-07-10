@@ -9,8 +9,8 @@ export default skate('sk-sidebar', {
   attached () {
     window.addEventListener('resize', this.resizeHandler);
     window.addEventListener('scroll', this.scrollHandler);
-    skate.ready(this.resizeHandler);
-    skate.ready(this.scrollHandler);
+    setTimeout(this.resizeHandler);
+    setTimeout(this.scrollHandler);
     this.selectCurrentItem();
   },
   detached () {

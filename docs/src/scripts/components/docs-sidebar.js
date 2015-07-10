@@ -25,9 +25,6 @@ export default skate('sk-docs-sidebar', {
           <sk-item><a href="/docs/options/type.html">type</a></sk-item>
         </sk-item>
         <sk-item>
-          <a href="/docs/skate/chain.html"><span class="subtle">skate.</span>chain()</a>
-        </sk-item>
-        <sk-item>
           <a href="/docs/skate/create.html"><span class="subtle">skate.</span>create()</a>
         </sk-item>
         <sk-item>
@@ -43,19 +40,7 @@ export default skate('sk-docs-sidebar', {
           <a href="/docs/skate/property.html"><span class="subtle">skate.</span>property()</a>
         </sk-item>
         <sk-item>
-          <a href="/docs/skate/queue.html"><span class="subtle">skate.</span>queue()</a>
-        </sk-item>
-        <sk-item>
-          <a href="/docs/skate/ready.html"><span class="subtle">skate.</span>ready()</a>
-        </sk-item>
-        <sk-item>
-          <a href="/docs/skate/type.html"><span class="subtle">skate.</span>type</a>
-        </sk-item>
-        <sk-item>
           <a href="/docs/skate/version.html"><span class="subtle">skate.</span>version</a>
-        </sk-item>
-        <sk-item>
-          <a href="/docs/skate/watch.html"><span class="subtle">skate.</span>watch()</a>
         </sk-item>
       </sk-item>
       <sk-item>

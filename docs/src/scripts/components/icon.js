@@ -7,14 +7,12 @@ export default skate('bs-icon', {
       init: 'fa'
     },
     prefix: {
-      deps: 'from',
       get () {
         return this.from === 'bs' ? 'glyphicon' : this.from;
       }
     },
     type: {
       attr: true,
-      deps: 'prefix',
       set (newValue) {
         this.className += ` ${this.prefix} ${this.prefix}-${newValue}`;
       }

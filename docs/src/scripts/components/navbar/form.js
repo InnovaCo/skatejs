@@ -18,10 +18,13 @@ export default skate('sk-navbar-form', {
   properties: {
     position: {
       attr: true,
-      init: 'right'
+      init: 'right',
+      set: function () {
+        // notifies positionClass that it changed
+        this.positionClass = '';
+      }
     },
     positionClass: {
-      deps: 'position',
       get: function () {
         return 'navbar-' + this.position;
       }
