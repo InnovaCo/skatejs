@@ -18,7 +18,7 @@ export default skate('sk-navbar-form', {
   properties: {
     position: {
       attr: true,
-      value: 'right'
+      init: 'right'
     },
     positionClass: {
       deps: 'position',

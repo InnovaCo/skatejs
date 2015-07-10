@@ -40,7 +40,7 @@ export default skate('sk-sidebar', {
     },
     footer: {
       set () {},
-      value: function () {
+      init: function () {
         return document.querySelector('footer');
       }
     }
