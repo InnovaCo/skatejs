@@ -3,8 +3,10 @@ import dashCase from '../util/dash-case';
 import data from '../util/data';
 import maybeThis from '../util/maybe-this';
 
+var getDescriptor = Object.getOwnPropertyDescriptor;
+
 // TODO: Lean out option normalisation.
-function property (name, prop) {
+function property (name, prop, existingProp = {}) {
   var internalGetter, internalSetter, internalValue, isBoolean;
 
   if (typeof prop === 'object') {
@@ -31,7 +33,15 @@ function property (name, prop) {
   isBoolean = prop.type && prop.type === Boolean;
 
   prop.get = function () {
-    return internalGetter ? internalGetter.apply(this) : internalValue;
+    if (internalGetter) {
+      return internalGetter.apply(this);
+    }
+
+    if (existingProp.get) {
+      return existingProp.get.call(this);
+    }
+
+    return internalValue;
   };
 
   prop.set = function (value) {
@@ -74,12 +84,20 @@ function property (name, prop) {
     if (internalSetter) {
       internalSetter.call(this, newValue, oldValue);
     }
+
+    // Ensure that if there was an existing setter that we've overridden that
+    // it get's notified of the new value.
+    if (existingProp.set) {
+      existingProp.set.call(this, newValue, oldValue);
+    }
   };
 
   return prop;
 }
 
 function defineProperty (elem, name, prop) {
+  var existingProp = getDescriptor(elem, name);
+
   // We don't need to scope the data to the component ID be cause if multiple
   // bindings on the same component define the same attribute, then they'd
   // conflict anyways.
@@ -89,7 +107,7 @@ function defineProperty (elem, name, prop) {
     info.attributeToPropertyMap = {};
   }
 
-  prop = property(name, prop);
+  prop = property(name, prop, existingProp);
   Object.defineProperty(elem, name, prop);
 
   // TODO: What happens if the setter does something with a descendant that
