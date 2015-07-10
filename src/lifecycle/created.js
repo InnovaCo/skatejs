@@ -5,6 +5,7 @@ import data from '../util/data';
 import protos from '../util/protos';
 import registry from '../global/registry';
 import walkTree from '../util/walk-tree';
+import ready from './ready';
 
 var elProto = window.Element.prototype;
 var oldSetAttribute = elProto.setAttribute;
@@ -87,5 +88,7 @@ export default function (opts) {
     triggerAttributesCreated(this);
     markAsResolved(this, opts.resolvedAttribute, opts.unresolvedAttribute);
     isNative || callCreatedOnDescendants(this, opts.id);
+
+    ready(opts).call(this);
   };
 }

@@ -13,6 +13,7 @@ import defaults from './defaults';
 import detached from './lifecycle/detached';
 import documentObserver from './global/document-observer';
 import elementConstructor from './util/element-constructor';
+import ready from './lifecycle/ready';
 import registry from './global/registry';
 import supportsCustomElements from './support/custom-elements';
 import typeElement from './type/element';
@@ -53,6 +54,9 @@ var initDocument = debounce(function () {
 
     for (let a = 0; a < componentsLength; a++) {
       created(components[a]).call(element);
+      setTimeout(function () {
+        ready(components[a]).call(element);
+      });
     }
 
     for (let a = 0; a < componentsLength; a++) {

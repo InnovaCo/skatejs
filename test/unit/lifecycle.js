@@ -12,12 +12,17 @@ describe('lifecycle', function () {
   var created = false;
   var attached = false;
   var detached = false;
+  var ready = false;
+  var isReadyAfterCreated = false;
 
   beforeEach(function () {
     tagName = helpers.safeTagName('my-el');
     created = false;
     attached = false;
     detached = false;
+    ready = false;
+    isReadyAfterCreated = false;
+
     MyEl = skate(tagName.safe, {
       created: function () {
         created = true;
@@ -27,8 +32,13 @@ describe('lifecycle', function () {
       },
       detached: function () {
         detached = true;
+      },
+      ready: function () {
+        ready = true;
+        isReadyAfterCreated = created;
       }
     });
+
     myEl = new MyEl();
   });
 
@@ -38,10 +48,24 @@ describe('lifecycle', function () {
     expect(detached).to.equal(false);
   });
 
+  it('should call the ready() callback after the element is created', function (done) {
+    setTimeout(function () {
+      expect(created).to.equal(true);
+      expect(ready).to.equal(true);
+      expect(attached).to.equal(false);
+      expect(detached).to.equal(false);
+      expect(isReadyAfterCreated).to.equal(true);
+      done();
+    });
+  });
+
+  //it('should call ready() only after children are ready()');
+
   it('should call the attached() callback when the element is attached', function (done) {
     helpers.fixture().appendChild(myEl);
     setTimeout(function () {
       expect(created).to.equal(true);
+      expect(ready).to.equal(true);
       expect(attached).to.equal(true);
       expect(detached).to.equal(false);
       done();
@@ -54,6 +78,7 @@ describe('lifecycle', function () {
       helpers.fixture().removeChild(myEl);
       setTimeout(function () {
         expect(created).to.equal(true);
+        expect(ready).to.equal(true);
         expect(attached).to.equal(true);
         expect(detached).to.equal(true);
         done();
@@ -64,6 +89,7 @@ describe('lifecycle', function () {
   it('should not call the attached() callback when the element is initialised', function () {
     skate.init(myEl);
     expect(created).to.equal(true);
+    //TODO do we need to add the ready callback check here?
     expect(attached).to.equal(false);
     expect(detached).to.equal(false);
   });

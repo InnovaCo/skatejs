@@ -13,6 +13,8 @@ export default {
   // Called when the element is detached from the document.
   detached: function () {},
 
+  ready: function () {},
+
   // The events to manage the binding and unbinding of during the definition's
   // lifecycle.
   events: undefined,
