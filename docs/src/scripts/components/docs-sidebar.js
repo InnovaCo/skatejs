@@ -7,6 +7,7 @@ export default skate('sk-docs-sidebar', {
       <sk-item>
         <a href="/docs/">Getting Started</a>
         <sk-item><a href="/docs/#h2-what-is-skate">What is Skate?</a></sk-item>
+        <sk-item><a href="/docs/#h2-simple-example">Simple Example</a></sk-item>
         <sk-item><a href="/docs/#h2-installing">Installing</a></sk-item>
       </sk-item>
       <sk-item>

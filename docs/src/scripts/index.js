@@ -13,3 +13,4 @@ import './components/sidebar';
 import './components/spin';
 import './components/stars';
 import './components/version';
+import './examples/x-progress';
