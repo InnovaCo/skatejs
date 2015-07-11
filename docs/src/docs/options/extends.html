@@ -12,20 +12,10 @@ template: index.html
     });
   </noscript>
 
-  <p>When you specify the <code>extends</code> option, instead of your component name mapping to the <code>tagName</code> of an element, it maps to the value of the <code>is</code> attribute. This conforms with the spec.</p>
+  <p>When you specify the <code>extends</code> option, instead of your component name mapping to the <code>tagName</code> of an element, it maps to the value of the <code>is</code> attribute.</p>
   <noscript is="sk-code" lang="html">
     <input is="my-element">
   </noscript>
 
-  <p>However, if you use this option in conjunction with the <code>type</code> option, Skate will only bind the component to an element that has a tag name matching the <code>extends</code> option.</p>
-  <noscript is="sk-code" lang="html">
-    <!-- skate.type.ELEMENT (default) -->
-    <input is="my-element">
-
-    <!-- skate.type.ATTRIBUTE -->
-    <input my-element>
-
-    <!-- skate.type.CLASSNAME -->
-    <input class="my-element">
-  </noscript>
+  <sk-notice>The default <a href="type.html"><code>type</code></a> conforms with the W3C spec and therefore uses this option. If you decide to use a custom type, that type may or may not use this option.</sk-notice>
 </sk-docs-layout>

@@ -34,8 +34,11 @@ template: index.html
 
   <p>or you can download the <a href="https://github.com/skatejs/skatejs">source</a> from GitHub.</p>
 
-  <h3>ES6 Modules</h3>
-  <p>The Skate source resides in <code>src/</code> and is written using ES2015 (formerly ES6). If you're using a transpilation method, then you can <code>import skate from 'src/index';</code> and use it in your projects as you would any ES6 module.</p>
+  <h3>ES2015 Modules</h3>
+  <p>The Skate source resides in <code>src/</code> and is written using ES2015 (formerly ES6). If you're able to consume ES2015 modules then you can:</p>
+  <noscript is="sk-code" lang="js">
+    import skate from './path/to/skate/src/index';
+  </noscript>
 
   <h3>UMD (AMD / CommonJS)</h3>
   <p>UMD files are located in the <code>lib/</code> directory. Load the <code>lib/index.js</code> file using the CommonJS or AMD loader of your choice.</p>

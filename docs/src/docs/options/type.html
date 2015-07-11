@@ -5,19 +5,41 @@ template: index.html
 <sk-docs-layout>
   <h2><code>options.type</code></h2>
 
-  <p>Optional. Defaults to <code>skate.type.ELEMENT</code>.</p>
-  <p>Specifies the type of binding that this component supports. Skate offers you three different types:</p>
-  <ul>
-    <li><code>skate.type.ELEMENT</code> (<strong>default</strong>) - Bind to an element whose tag name matches the component name.</li>
-    <li><code>skate.type.ATTRIBUTE</code> - Bind to an element who has an attribute matching the component name.</li>
-    <li><code>skate.type.CLASSNAME</code> - Bind to an element who has a class name matching the component name.</li>
-  </ul>
-  <p>You specify these as the <code>type</code> option:</p>
+  <p>Optional. Defines how Skate should bind this component to an element. By default this assumes you want to use custom tag names as defined in the <a href="http://w3c.github.io/webcomponents/spec/custom/">Custom Element Spec</a> and is not required. If you do want to bind behaviour to elements in other ways, you may create your own binding types.</p>
+
+  <p>A custom binding type must provide the following interface:</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
-      type: skate.type.ELEMENT
-    });
+    var myCustomType = {
+      create: function (definition) {},
+      filter: function (element, definitions) {}
+    };
   </noscript>
 
-  <p>For more information on how these affect how these bind to an element, see the <a href="/docs/skate.html"><code>skate()</code> function</a>.</p>
+  <h3><code>create (definition)</code></h3>
+  <p>The <code>create()</code> method is responsible for creating an element from the provided component definition. The component definition is the object that was originally passed in to the <code>skate()</code> function. If you wanted to create a binding that returns a custom element from a definition then you would do something like:</p>
+  <noscript is="sk-code" lang="js">
+    var myCustomType = {
+      create: function (definition) {
+        return document.createElement(definition.id);
+      },
+      filter: function (element, definitions) {}
+    };
+  </noscript>
+
+  <h3><code>filter (element, definitions)</code></h3>
+  <p>The filter method is responsible for taking an <code>element</code> that we want to return an <code>Array</code> of matching <code>definitions</code> for. The <code>definitions</code> parameter is an <code>Object</code> of definitions that have this <code>type</code> registered on them. The key is the component name and the value is the definition. If you wanted to return the definitions for a given custom element, you could do something like:</p>
+  <noscript is="sk-code" lang="js">
+    var myCustomType = {
+      create: function (definition) {
+        return document.createElement(definition.id);
+      },
+      filter: function (element, definitions) {
+        return [definitions[element.tagName.toLowerCase()]];
+      }
+    };
+  </noscript>
+
+  <h3>Recommendations</h3>
+  <p>It's recommended that you use the default binding type whenever possible so that native custom elements can be used if available. If you are able to use native, you get inherent performance benefits as well as explicit bindings via custom tag names. However, there are several use cases for creating custom bindings. For example, if you wanted to polyfill the <code>dialog</code> element, the <code>datetime</code> input type or the <code>srcset</code> attribute. You may also have a bunch of old jQuery plugins bound to elements via class names. You can rewrite these as Skate components without even touching any HTML.</p>
+  <p>For these use cases, Skate provides the <a href="https://github.com/skatejs/type-attribute">attribute binding type</a> and <a href="https://github.com/skatejs/type-class">class binding type</a> as separate modules.</p>
 </sk-docs-layout>

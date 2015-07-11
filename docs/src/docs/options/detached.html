@@ -5,10 +5,10 @@ template: index.html
 <sk-docs-layout>
   <h2><code>options.detached</code></h2>
 
-    <p>A function that is called whenever the element is detached from the DOM. <code>this</code> inside the callback refers to the element.</p>
+  <p>A function that is called whenever the element is detached from the DOM. <code>this</code> inside the callback refers to the element.</p>
   <noscript is="sk-code" lang="js">
     skate('my-element', {
-      detached () {
+      detached: function () {
         this.detached = true;
       }
     });

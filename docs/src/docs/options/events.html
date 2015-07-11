@@ -22,7 +22,6 @@ template: index.html
 
 
   <h3>Event Delegation</h3>
-
   <p>The following would be called for all events that were triggered from a descendant of, or by an element matching <code>.some [selector]</code>.</p>
   <noscript is="sk-code" lang="js">
     skate('my-element', {
@@ -31,6 +30,26 @@ template: index.html
       }
     });
   </noscript>
-
   <p class="notice notice-info">The <code>e.delegateTarget</code> property is set on the event object that is passed to all event handlers. When delegating it is the element that matched the selector. When not delegating, it is the same thing as <code>e.target</code>.</p>
+
+
+
+  <h3>Custom Event Binding</h3>
+
+  <p>If you need to bind events differently that how Skate does it by default you may specify a function instead of an object:</p>
+  <noscript is="sk-code" lang="js">
+    events: function () {
+      this.addEventListener('click', function () {});
+    }
+  </noscript>
+
+  <p>You may also use a combination of custom event binding methods and Skate's using <code>skate.event()</code>:</p>
+  <noscript is="sk-code" lang="js">
+    events: function () {
+      this.addEventListener('click', function () {});
+      skate.event(this, {
+        focus: function () {}
+      });
+    }
+  </noscript>
 </sk-docs-layout>

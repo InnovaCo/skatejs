@@ -8,7 +8,7 @@ template: index.html
   <p>A function that is called whenever the element is attached to the DOM. <code>this</code> inside the callback refers to the element.</p>
   <noscript is="sk-code" lang="js">
     skate('my-element', {
-      attached () {
+      attached: function () {
         this.attached = true;
       }
     });

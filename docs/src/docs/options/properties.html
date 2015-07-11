@@ -64,6 +64,30 @@ template: index.html
 
 
 
+  <h3><code>init</code></h3>
+
+  <p>The initial value for the property. It will be coerced and pass through the setter when initialised.</p>
+  <noscript is="sk-code" lang="js">
+    init: 'initial value'
+  </noscript>
+
+  <p>If you specify a <code>Function</code> then it will be called and the return value used as the initial value.</p>
+  <noscript is="sk-code" lang="js">
+    init: function () {
+      return 'initial value';
+    }
+  </noscript>
+
+  <p>The element is passed as <code>this</code>, however, keep in mind that property initialisation order is not guaranteed. If you need the element in order to compute the value, it's better to use <code>get</code> or <code>set</code> instead.</p>
+  <p>If you wanted to have a property linked to a boolean attribute and have it set on the element by default, all you'd have to do is:</p>
+  <noscript is="sk-code" lang="js">
+    attr: true,
+    init: true,
+    type: Boolean
+  </noscript>
+
+
+
   <h3><code>notify</code></h3>
   <p>Whether or not to emit an event when the property is set. Defaults to <code>true</code>.</p>
 
@@ -120,25 +144,41 @@ template: index.html
 
 
 
-  <h3><code>value</code></h3>
+  <h3>Custom Property Binding</h3>
 
-  <p>The initial value for the property. It will be coerced and pass through the setter when initialised.</p>
+  <p>If you want to bind properties in a custom manner, you may simply specify a function instead of an object. It's then up to you to bind properties to the element yourself:</p>
   <noscript is="sk-code" lang="js">
-    value: 'initial value'
-  </noscript>
-
-  <p>If you specify a <code>Function</code> then it will be called and the return value used as the initial value.</p>
-  <noscript is="sk-code" lang="js">
-    value: function () {
-      return 'initial value';
+    properties: function () {
+      Object.defineProperty(this, 'myProperty', {
+        value: true
+      });
     }
   </noscript>
 
-  <p>The element is passed as <code>this</code>, however, keep in mind that property initialisation order is not guaranteed. If you need the element in order to compute the value, it's better to use <code>get</code> or <code>set</code> instead.</p>
-  <p>If you wanted to have a property linked to a boolean attribute and have it set on the element by default, all you'd have to do is:</p>
+  <p>You may also use the <code>skate.property()</code> to get the same behaviour as if you'd used an object. This allows you to use a combination of Skate's way and another way of binding properties:</p>
   <noscript is="sk-code" lang="js">
-    attr: true,
-    type: Boolean,
-    value: true
+    properties: function () {
+      skate.property(this, {
+        disabled: {
+          attr: true,
+          type: Boolean
+        }
+      });
+
+      Object.defineProperty(this, 'type', {
+        value: 'text'
+      });
+    }
+  </noscript>
+
+
+
+  <h3>Specifying on the Prototype Instead</h3>
+  <p>If you don't need the special behaviour that Skate's custom properties give you, then you may as well just specify getters and setters directly on the prototype:</p>
+  <noscript is="sk-code" lang="js">
+    prototype: {
+      get something () {},
+      set something () {}
+    }
   </noscript>
 </sk-docs-layout>
