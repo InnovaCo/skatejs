@@ -7,7 +7,8 @@ template: index.html
 
   <p>A function that is called when an attribute is created, updated or removed.</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       attribute: function (name, oldvalue, newValue) {
         if (oldValue === null) {
           // created

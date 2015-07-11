@@ -7,7 +7,8 @@ template: index.html
 
   <p>The name of the element that this component is extending. This is synonymous with the <a href="http://w3c.github.io/webcomponents/spec/custom/#var-options-extends">W3C Custom Element <code>extends</code> option</a>.</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       extends: 'input'
     });
   </noscript>

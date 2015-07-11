@@ -7,7 +7,8 @@ template: index.html
 
   <p>A function that is called once when the element is created. <code>this</code> inside the callback refers to the element.</p>
   <noscript is="sk-code" lang="js">
-    var MyElement = skate('my-element', {
+    var MyElement = skate({
+      name: 'my-element',
       created: function () {
         this.created = true;
       }

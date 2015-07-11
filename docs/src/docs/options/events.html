@@ -12,7 +12,8 @@ template: index.html
 
   <p>The following would be called for all <code>click</code> events that were either bubbled or triggered on the element itself:</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       events: {
         click (e) {}
       }
@@ -24,7 +25,8 @@ template: index.html
   <h3>Event Delegation</h3>
   <p>The following would be called for all events that were triggered from a descendant of, or by an element matching <code>.some [selector]</code>.</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       events: {
         'click .some [selector]' (e) {}
       }

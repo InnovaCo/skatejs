@@ -5,7 +5,7 @@ template: index.html
 <sk-docs-layout>
   <h2><code>options.type</code></h2>
 
-  <p>Optional. Defines how Skate should bind this component to an element. By default this assumes you want to use custom tag names as defined in the <a href="http://w3c.github.io/webcomponents/spec/custom/">Custom Element Spec</a> and is not required. If you do want to bind behaviour to elements in other ways, you may create your own binding types.</p>
+  <p>Defines how Skate should bind this component to an element. By default this assumes you want to use custom tag names as defined in the <a href="http://w3c.github.io/webcomponents/spec/custom/">Custom Element Spec</a> and is not required. If you do want to bind behaviour to elements in other ways, you may create your own binding types.</p>
 
   <p>A custom binding type must provide the following interface:</p>
   <noscript is="sk-code" lang="js">
@@ -20,7 +20,7 @@ template: index.html
   <noscript is="sk-code" lang="js">
     var myCustomType = {
       create: function (definition) {
-        return document.createElement(definition.id);
+        return document.createElement(definition.name);
       },
       filter: function (element, definitions) {}
     };
@@ -31,7 +31,7 @@ template: index.html
   <noscript is="sk-code" lang="js">
     var myCustomType = {
       create: function (definition) {
-        return document.createElement(definition.id);
+        return document.createElement(definition.name);
       },
       filter: function (element, definitions) {
         return [definitions[element.tagName.toLowerCase()]];

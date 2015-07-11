@@ -7,7 +7,8 @@ template: index.html
 
   <p>Defines custom properties on the element. Each property definition is different than that normally specified to <code>Object.defineProperty()</code>.</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       properties: {
         prop1: { /* property options */ },
         prop2: { /* property options */ }

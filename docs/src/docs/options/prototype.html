@@ -7,7 +7,8 @@ template: index.html
 
   <p>Methods and properties that should be available on the element instance. This behaves just like any prototype object does. All methods and properties are added to the element's prototype (native), or to the element instance during the created lifecycle (polyfill).</p>
   <noscript is="sk-code" lang="js">
-    skate('my-element', {
+    skate({
+      name: 'my-element',
       prototype: {
         get someProperty () {},
         someMethod: function () {}
