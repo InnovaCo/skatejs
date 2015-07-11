@@ -5,7 +5,7 @@ template: index.html
 <sk-docs-layout>
   <h2><code>options.type</code></h2>
 
-  <p>Defines how Skate should bind this component to an element. By default this assumes you want to use custom tag names as defined in the <a href="http://w3c.github.io/webcomponents/spec/custom/">Custom Element Spec</a> and is not required. If you do want to bind behaviour to elements in other ways, you may create your own binding types.</p>
+  <p>Defines how Skate should bind this component to an element. By default Skate conforms to the <a href="http://w3c.github.io/webcomponents/spec/custom/">Custom Element Spec</a> and is this option is <em>not</em> required. If you do want to bind behaviour to elements in other ways, you may create your own binding types.</p>
 
   <p>A custom binding type must provide the following interface:</p>
   <noscript is="sk-code" lang="js">
@@ -13,6 +13,14 @@ template: index.html
       create: function (definition) {},
       filter: function (element, definitions) {}
     };
+  </noscript>
+
+  <p>You'd use that custom type as the value of this option:</p>
+  <noscript is="sk-code" lang="js">
+    skate({
+      name: 'my-element',
+      type: myCustomType
+    })
   </noscript>
 
   <h3><code>create (definition)</code></h3>
@@ -25,6 +33,7 @@ template: index.html
       filter: function (element, definitions) {}
     };
   </noscript>
+  <sk-notice>This method is required so that when you use the element constructor / function returned from <a href="../skate.html"><code>skate()</code></a> or <a href="../skate/create.html"><code>skate.create()</code></a> that all it simply needs to do is ask the component type how it should create the element. This gives consumers a consistent way to create elements from any component type.</sk-notice>
 
   <h3><code>filter (element, definitions)</code></h3>
   <p>The filter method is responsible for taking an <code>element</code> that we want to return an <code>Array</code> of matching <code>definitions</code> for. The <code>definitions</code> parameter is an <code>Object</code> of definitions that have this <code>type</code> registered on them. The key is the component name and the value is the definition. If you wanted to return the definitions for a given custom element, you could do something like:</p>

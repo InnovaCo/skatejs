@@ -124,7 +124,7 @@ template: index.html
 
         // Subsequent renders.
         this.addEventListener('skate.property', function () {
-          var newTree = createVdomTree(this);
+          var newTree = createVdomTree(e.target);
           root = patch(root, diff(tree, newTree));
           tree = newTree;
         });

@@ -55,6 +55,6 @@ template: index.html
     <li>You have not specified the <a href="options/type.html"><code>type</code></a> option.</li>
     <li>Your component has a hyphen in its name.</li>
   </ul>
-  <p>In all other instances Skate will use a <code>MutationObserver</code> to polyfill the same behaviour. In browsers that do not have native support for Mutation Observers, you must include <a href="https://github.com/skatejs/polyfill-mutation-observer">a polyfill</a>.</p>
+  <p>In all other instances Skate will use a <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver"><code>MutationObserver</code></a> to polyfill the same behaviour. In browsers that do not have native support for Mutation Observers, you must include <a href="https://github.com/skatejs/polyfill-mutation-observer">a polyfill</a>.</p>
   <p class="notice notice-info">Though it's not slow by any means, you should always try and meet this criteria because using Native will <em>always</em> be faster and is synchronous out of the box.</p>
 </sk-docs-layout>
