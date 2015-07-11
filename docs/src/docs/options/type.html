@@ -42,4 +42,5 @@ template: index.html
   <h3>Recommendations</h3>
   <p>It's recommended that you use the default binding type whenever possible so that native custom elements can be used if available. If you are able to use native, you get inherent performance benefits as well as explicit bindings via custom tag names. However, there are several use cases for creating custom bindings. For example, if you wanted to polyfill the <code>dialog</code> element, the <code>datetime</code> input type or the <code>srcset</code> attribute. You may also have a bunch of old jQuery plugins bound to elements via class names. You can rewrite these as Skate components without even touching any HTML.</p>
   <p>For these use cases, Skate provides the <a href="https://github.com/skatejs/type-attribute">attribute binding type</a> and <a href="https://github.com/skatejs/type-class">class binding type</a> as separate modules.</p>
+  <sk-notice>It's important to remember that Skate must check each element in the DOM against each binding type. The code you write in a custom binding type is <em>performance critical</em>.</sk-notice>
 </sk-docs-layout>
