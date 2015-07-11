@@ -46,7 +46,8 @@ reveal: true
       <div>
         <h3>JavaScript</h3>
         <noscript is="sk-code" lang="js">
-          skate('my-element', {
+          skate({
+            name: 'my-element',
             created: function () {
               this.textContent = 'Hello, World!';
             }
