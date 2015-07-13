@@ -61,6 +61,10 @@ function applyPrototype (proto) {
   };
 }
 
+function signalReady (elem) {
+    elem.dispatchEvent(new CustomEvent("__skate_ready"));
+}
+
 export default function (opts) {
   var created = opts.created;
   var events = fnOrApi(opts.events, apiEvent);
@@ -86,6 +90,7 @@ export default function (opts) {
     created.call(this);
     triggerAttributesCreated(this);
     markAsResolved(this, opts.resolvedAttribute, opts.unresolvedAttribute);
+    signalReady(this);
     isNative || callCreatedOnDescendants(this, opts.id);
   };
 }

@@ -5,6 +5,7 @@ import './unit/api/event';
 import './unit/api/init';
 import './unit/api/no-conflict';
 import './unit/api/property';
+import './unit/api/whenReady';
 import './unit/attributes';
 import './unit/constructor';
 import './unit/document-observer';

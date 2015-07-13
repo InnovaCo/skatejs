@@ -3,6 +3,7 @@ import apiEmit from './api/emit';
 import apiInit from './api/init';
 import apiNoConflict from './api/no-conflict';
 import apiVersion from './api/version';
+import apiWhenReady from './api/whenReady'
 import assign from './util/assign';
 import assignSafe from './util/assign-safe';
 import attached from './lifecycle/attached';
@@ -103,6 +104,7 @@ skate.emit = apiEmit;
 skate.init = apiInit;
 skate.noConflict = apiNoConflict;
 skate.version = apiVersion;
+skate.whenReady = apiWhenReady;
 
 // Global
 window.skate = skate;
